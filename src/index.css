@@ -1,0 +1,414 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Load fonts */
+@font-face {
+  font-family: 'cinzel';
+  src: url('./assets/fonts/Cinzel-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'cinzel-bold';
+  src: url('./assets/fonts/Cinzel-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'cinzel-medium';
+  src: url('./assets/fonts/Cinzel-Medium.ttf');
+}
+
+/* Default padding */
+.padd {
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+/* For medium screens and above (md) */
+@media (max-width: 767px) {
+  .padd {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+}
+
+/* For small screens and above (sm) */
+@media (max-width: 639px) {
+  .padd {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+
+/* 
+================================================================================================
+================================================================================================
+================================================================================================
+*/
+
+.carousel_slide,
+.carousel_image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel_slide {
+  padding: 5% 12% 8%;
+  text-align: center;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.carousel_slide.is-selected {
+  transform: translateX(0);
+}
+
+.carousel_slide.is-selected ~ .carousel_slide {
+  transform: translateX(100%);
+}
+
+.carousel_image {
+  z-index: -1;
+}
+
+.carousel_image > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: none;
+}
+
+.carousel_btn,
+.carousel_dot {
+  z-index: 1;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+}
+
+.carousel_btn {
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  transform: translateY(-50%);
+}
+
+.carousel_btn:focus,
+.carousel_dot:focus,
+.carousel_btn:active,
+.carousel_dot:active {
+  outline: none;
+}
+
+.carousel_btn > * {
+  pointer-events: none;
+}
+
+.carousel_btn svg {
+  fill: #fbfada;
+  transform-origin: center;
+  transition: fill 0.2s;
+}
+
+.carousel_btn:hover svg {
+  fill: #fffdc4;
+}
+
+.jsPrev {
+  left: 10px;
+}
+
+.jsNext {
+  right: 10px;
+}
+
+.jsPrev svg {
+  transform: rotate(-90deg);
+}
+
+.jsNext svg {
+  transform: rotate(90deg);
+}
+
+.carousel_nav {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carousel_dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #fbfada;
+  transition: background-color 0.2s;
+}
+
+.carousel_dot + .carousel_dot {
+  margin-left: 20px;
+}
+
+.carousel_dot.is-selected {
+  background-color: #fbfada;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease-in-out;
+}
+
+.zed {
+  z-index: 30;
+}
+
+.zedd {
+  z-index: 99999999999;
+}
+
+/* Partners */
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 versions
+*/
+
+/* Carousel and animation css starts */
+.rc-carousel {
+  --box-gap: 1.5rem;
+  --tile-size: 8rem;
+  width: 100%;
+  max-width: calc(
+    (var(--tile-size) + var(--box-gap)) * ((var(--tiles) / 2) - 1)
+  );
+  margin: var(--box-gap) auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+.rc-carousel::before,
+.rc-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 5rem;
+  height: 100%;
+  background-image: -webkit-gradient(
+    linear,
+    from(transparent),
+    to(var(--body-bg))
+  );
+  background-image: -o-linear-gradient(
+    var(--direction),
+    transparent,
+    var(--body-bg)
+  );
+  background-image: linear-gradient(
+    to var(--direction),
+    transparent,
+    var(--body-bg)
+  );
+  z-index: inherit;
+}
+.rc-carousel::before {
+  left: 0;
+  --direction: left;
+}
+
+.rc-carousel::after {
+  right: 0;
+  --direction: right;
+}
+.rc-carousel-strip {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  -webkit-animation: slideX 20s linear infinite;
+  animation: slideX 20s linear infinite;
+}
+.rc-carousel-strip.reverse {
+  /* reverse animation */
+  animation-direction: reverse;
+}
+.rc-carousel-strip:hover {
+  -webkit-animation-play-state: paused;
+  animation-play-state: paused;
+}
+.rc-carousel-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  gap: var(--box-gap);
+}
+
+.rc-carousel-item-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  -o-object-position: center;
+  object-position: center;
+}
+
+@-webkit-keyframes slideX {
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  0% {
+    -webkit-transform: translateX(
+      calc(-1 * (var(--tile-size) + var(--box-gap)) * (var(--tiles) / 2))
+    );
+    transform: translateX(
+      calc(-1 * (var(--tile-size) + var(--box-gap)) * (var(--tiles) / 2))
+    );
+  }
+}
+
+@keyframes slideX {
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  0% {
+    -webkit-transform: translateX(
+      calc(-1 * (var(--tile-size) + var(--box-gap)) * (var(--tiles) / 2))
+    );
+    transform: translateX(
+      calc(-1 * (var(--tile-size) + var(--box-gap)) * (var(--tiles) / 2))
+    );
+  }
+}
+
+/* Animation won't work if you preferes reduced motion */
+@media (prefers-reduced-motion) {
+  /* styles to apply if a user's device settings are set to reduced motion */
+  .rc-carousel::before,
+  .rc-carousel::after {
+    display: none;
+  }
+  .rc-carousel-box {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .rc-carousel-box [aria-hidden='true'] {
+    display: none;
+  }
+  .rc-carousel-strip {
+    animation: none;
+  }
+}
+/* reduced motion css ends */
+/* Carousel and animation css ends */
+
+/* Footer and credits styles */
+.footer {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background: #fff;
+  font-size: 0.75rem;
+  text-align: right;
+  font-weight: 600;
+}
+
+.this-one {
+  transition: background-image 0.5s ease-in-out;
+}
+
+.slide {
+  background-position: -100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* faq ========================= */
+
+details > p {
+  max-width: 650px;
+  color: #aeb9c6;
+  font-size: 18px;
+  line-height: 155%;
+  letter-spacing: 0.1px;
+  margin-bottom: 40px;
+  padding-left: 10px;
+}
+
+hr {
+  border: 1px solid #404e5c;
+  margin-block-end: 30px;
+}
+
+/* Translate */
+
+.search-bar {
+  width: 70%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+#google_translate_element {
+  margin-left: 10px;
+  background: transparent;
+}
+
+.goog-te-combo {
+  background-color: #f1f1f1;
+  color: #fbfada;
+  border: 1px solid #303929;
+  background: #43685082;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Hide the Google Translate logo and footer */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  color: transparent !important;
+}
+
+/* Optionally hide the entire Google toolbar */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-banner-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+body {
+  top: 0px !important;
+}
+
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+}
+.zzzzz {
+  z-index: 99999999999999;
+}
