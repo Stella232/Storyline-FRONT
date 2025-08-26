@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function Contact() {
-  const [messages, setMessages] = useState({
+  const [ ,setMessages] = useState({
     names: '',
     email: '',
     message: '',
@@ -21,7 +21,7 @@ export default function Contact() {
     e.preventDefault()
 
     try {
-      const respone = await emailjs.sendForm(
+      await emailjs.sendForm(
         'service_gj3321i',
         'template_zdsv9ma',
         form.current as any,
@@ -116,7 +116,7 @@ export default function Contact() {
           ></textarea>
           <SlButton
             text="Send"
-            onClick={onSendMessage}
+            onClick={onSendMessage as any}
             variant="tertiary"
             loading={isLoading}
             isDarkLoading
